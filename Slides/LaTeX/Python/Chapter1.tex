@@ -1,0 +1,358 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A Beamer template for University of Wollongong     %
+% Based on THU beamer theme                          %
+% Author: Qiuyu Lu                                   %
+% Date: July 2024                                    %
+% LPPL Licensed.                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[serif, aspectratio=169]{beamer}
+%\documentclass[serif]{beamer}  % for 4:3 ratio
+\usepackage[T1]{fontenc} 
+\usepackage{fourier} % see "http://faq.ktug.org/wiki/uploads/MathFonts.pdf" for other options
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{lipsum}
+\usepackage{listings}
+
+
+
+\author{Dr.Hajialiasgari}
+\title{Introduction To Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show,
+subsectionstyle=show/shaded/hide,
+subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{Why Python ?}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item \textbf{Introduction to Python}
+        \item Python is a powerful, easy-to-learn programming language. Known for its clear syntax, it’s widely used in web development, data analysis, automation, and AI.
+        \item Its versatility and extensive libraries make it ideal for beginners and professionals alike.
+    \end{itemize}
+\end{frame}
+
+
+\section{Work Environment}
+\subsection{Python, VSCode, Jupyter}
+
+\begin{frame}{Installation}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item \textbf{Install Python:} \newline
+        Download and install Python from: \newline
+        \url{https://www.python.org/downloads/}
+        \item \textbf{Install VSCode:} \newline
+        Get Visual Studio Code from: \newline
+        \url{https://code.visualstudio.com/}
+        \item \textbf{Install Jupyter:} \newline
+        Use the command: \newline
+        \texttt{pip install jupyterlab} \newline
+        More details at: \newline
+        \url{https://jupyter.org/install}
+    \end{itemize}
+\end{frame}
+
+
+
+\section{Variables, Expression, Statement}
+
+% Constants Slide
+\begin{frame}{Constants}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item Fixed values such as numbers, letters, and strings, are called “constants” because their value does not change.
+        \item Numeric constants are as you expect.
+        \item String constants use single quotes (') or double quotes (").
+    \end{itemize}
+\end{frame}
+
+% Reserved Words Slide
+\begin{frame}{Reserved Words}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item False, await, else, import, pass
+        \item None, break, except, in, raise
+        \item True, class, finally, is, return
+        \item and, continue, for, lambda, try
+        \item as, def, from, nonlocal, while
+        \item assert, del, global, not, with
+        \item async, elif, if, or, yield
+    \end{itemize}
+\end{frame}
+
+% Variable Slide
+\begin{frame}{Variables}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item A variable is a named place in memory where a programmer can store data and later retrieve it using the variable's name.
+        \item Programmers get to choose the names of the variables.
+        \item You can change the contents of a variable in a later statement.
+    \end{itemize}
+\end{frame}
+
+% Python Variable Rules Slide
+\begin{frame}{Python Variable Rules}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item Must start with a letter or an underscore (\_)
+        \item Must consist of letters, numbers, and underscores (\_)
+        \item Case sensitive (e.g., `var` and `Var` are different variables)
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Examples:}
+    \begin{itemize}
+        \item Valid: `my\_variable`, `var123`, `\_myVar` \\
+        \item Invalid: `123var`, `my-var`, `my var`
+    \end{itemize}
+\end{frame}
+
+% Different Types Slide
+\begin{frame}{Different Types in Python}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item Python supports different data types, including:
+        \begin{itemize}
+            \item \textbf{String (str)}: A sequence of characters, e.g., `'Hello'`, `"World"`
+            \item \textbf{Integer (int)}: Whole numbers, e.g., `10`, `-5`
+            \item \textbf{Float}: Numbers with decimal points, e.g., `3.14`, `-0.001`
+            \item \textbf{Complex}: Complex numbers, e.g., `1+2j`
+            \item \textbf{Boolean}: True , False
+        \end{itemize}
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Examples:}
+    \begin{itemize}
+        \item String: `"Hello World"`
+        \item Integer: `42`
+        \item Float: `3.14159`
+        \item Complex: `1+2j`
+    \end{itemize}
+    \textbf{Syntax:}
+    \begin{itemize}
+        \item type (42)\\
+<class ’int’>
+    \end{itemize}
+    
+\end{frame}
+
+\section{Numeric Expression}
+
+% Operators and Operations Slide
+\begin{frame}{Operators and Operations}
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Operator} & \textbf{Operation} \\
+        \hline
+        \texttt{+} & Addition \\
+        \texttt{-} & Subtraction \\
+        \texttt{*} & Multiplication \\
+        \texttt{/} & Division \\
+        \texttt{**} & Exponentiation \\
+        \texttt{//} & Floor Division \\
+        \texttt{\%} & Modulus (Remainder) \\
+        \hline
+    \end{tabular}
+\end{frame}
+
+% Example of Operations Slide 1
+\begin{frame}{Examples of Operations}
+    \textbf{Addition and Subtraction:}
+    \begin{itemize}[<+-| alert@+>]
+        \item \texttt{5 + 3 = 8}
+        \item \texttt{10 - 4 = 6}
+    \end{itemize}
+\end{frame}
+
+% Example of Operations Slide 2
+\begin{frame}{Examples of Operations}
+    \textbf{Multiplication and Division:}
+    \begin{itemize}[<+-| alert@+>]
+        \item \texttt{4 * 3 = 12}
+        \item \texttt{8 / 2 = 4.0}
+    \end{itemize}
+\end{frame}
+
+% Example of Operations Slide 3
+\begin{frame}{Examples of Operations}
+    \textbf{Exponentiation, Floor Division, Modulus:}
+    \begin{itemize}[<+-| alert@+>]
+        \item \texttt{2 ** 3 = 8}
+        \item \texttt{7 // 2 = 3}
+        \item \texttt{7 \% 2 = 1}
+    \end{itemize}
+\end{frame}
+
+% Order of Evaluation Slide
+\begin{frame}{Order of Evaluation}
+    \begin{itemize}[<+-| alert@+>]
+        \item When we string operators together, Python must know which one to do first.
+        \item This is called “operator precedence.”
+        \item Which operator “takes precedence” over the others?
+    \end{itemize}
+\end{frame}
+
+% Operator Precedence Rule Slide
+\begin{frame}{Operator Precedence Rule}
+    \textbf{Highest precedence rule to lowest precedence rule:}
+    \begin{itemize}[<+-| alert@+>]
+        \item Parentheses are always respected: \texttt{(2 + 3) * 4 = 20}
+        \item Exponentiation (raise to a power): \texttt{2 ** 3 = 8}
+        \item Multiplication, Division, and Remainder: \texttt{8 / 2 * 4 = 16}
+        \item Addition and Subtraction: \texttt{3 + 5 - 2 = 6}
+        \item Left to right: \texttt{2 + 3 * 4 = 14}
+    \end{itemize}
+\end{frame}
+
+% User Input Slide
+\begin{frame}[fragile]{User Input}
+    \begin{itemize}[<+-| alert@+>]
+        \item We can instruct Python to pause and read data from the user using the \texttt{input()} function.
+        \item The \texttt{input()} function returns a string.
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Example:}
+    \begin{verbatim}
+name = input("Enter your name: ")
+print("Hello, " + name)
+    \end{verbatim}
+\end{frame}
+% Converting Input Slide
+\section{Conditional Execution, Input}
+
+\subsection{Converting Input, if else}
+
+% Converting Input Slide
+\begin{frame}[fragile]{Converting Input}
+    \begin{itemize}[<+-| alert@+>]
+        \item If we want to read a number from the user, we must convert it from a string to a number using a type conversion function.
+        \item Later we will deal with bad input data.
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Example:}
+    \begin{verbatim}
+age = input("Enter your age: ")
+age = int(age)
+print(age + 5)
+    \end{verbatim}
+\end{frame}
+
+% Conditional Execution Slide
+% Conditional Execution Slide
+\begin{frame}{Conditional Execution}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item Conditional execution allows the program to execute certain blocks of code based on specific conditions.
+        \item The primary conditional statements in Python are \texttt{if}, \texttt{elif}, and \texttt{else}.
+    \end{itemize}
+\end{frame}
+
+% Comparison Operators Slide
+\begin{frame}{Comparison Operators}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Operator} & \textbf{Description} & \textbf{Example} \\
+        \hline
+        \texttt{==} & Equal to & \texttt{a == b} \\
+        \texttt{!=} & Not equal to & \texttt{a != b} \\
+        \texttt{>} & Greater than & \texttt{a > b} \\
+        \texttt{<} & Less than & \texttt{a < b} \\
+        \texttt{>=} & Greater than or equal to & \texttt{a >= b} \\
+        \texttt{<=} & Less than or equal to & \texttt{a <= b} \\
+        \hline
+    \end{tabular}
+\end{frame}
+
+
+% If Statement Slide
+\begin{frame}[fragile]{If Statement}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item The \texttt{if} statement checks a condition and executes the block of code if the condition is true.
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Example:}
+    \begin{verbatim}
+if age >= 18:
+    print("You are an adult")
+    \end{verbatim}
+\end{frame}
+
+% Else Statement Slide
+\begin{frame}[fragile]{Else Statement}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item The \texttt{else} statement executes if all preceding conditions are false.
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Example:}
+    \begin{verbatim}
+if temperature > 30:
+    print("It's a hot day.")
+else:
+    print("It's a pleasant day.")
+    \end{verbatim}
+\end{frame}
+
+% Nested Conditional Statements Slide
+\begin{frame}[fragile]{Nested Conditionals}
+    \begin{itemize}[<+-| alert@+>] % stepwise alerts
+        \item You can nest \texttt{if} statements within other \texttt{if} statements to create more complex conditions.
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Example:}
+    \begin{verbatim}
+if score >= 50:
+    print("You passed.")
+    if score >= 90:
+        print("Excellent!")
+    else:
+        print("Good job.")
+else:
+    print("You failed.")
+    \end{verbatim}
+\end{frame}
+
+
+% End of Session Slide
+\begin{frame}
+    \begin{center}
+        {\Huge\ End of session 1}
+    \end{center}
+\end{frame}
+\end{document}
