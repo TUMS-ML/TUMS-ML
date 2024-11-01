@@ -1,0 +1,176 @@
+\documentclass[serif, aspectratio=169]{beamer}
+%\documentclass[serif]{beamer}  % for 4:3 ratio
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+
+\author{Dr.Hajialiasgari}
+\title{Introduction To Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Functions}
+
+\begin{frame}{Python Functions}
+    \begin{itemize}
+        \item There are two kinds of functions in Python:
+        \begin{itemize}
+            \item \textbf{Built-in functions} provided as part of Python, such as \texttt{print()}, \texttt{input()}, \texttt{type()}, etc.
+            \item \textbf{User-defined functions} which are created by the programmer.
+        \end{itemize}
+        \item Function names are treated as "new reserved words."
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Function Definition}
+    \begin{itemize}
+        \item A function is reusable code that takes arguments, performs a computation, and returns a result.
+        \item Defined using the \texttt{def} keyword.
+    \end{itemize}
+\end{frame}
+
+\section{Build Your Function}
+
+\begin{frame}[fragile]{Build Your Function}
+    \begin{itemize}
+        \item Functions are defined with the \texttt{def} keyword and optional parameters in parentheses.
+        \item Example:
+    \end{itemize}
+    \begin{lstlisting}
+def greet(name):
+    return "Hello, " + name + "!"
+    \end{lstlisting}
+\end{frame}
+
+\section{Definition and Uses}
+
+\begin{frame}{Definition and Uses}
+    \begin{itemize}
+        \item After defining a function, it can be invoked multiple times.
+        \item This is known as the "store and reuse" pattern.
+    \end{itemize}
+\end{frame}
+
+\section{Arguments}
+
+\begin{frame}[fragile]{Arguments}
+    \begin{itemize}
+        \item Arguments are values passed to a function.
+        \item Example:
+    \end{itemize}
+    \begin{lstlisting}
+largest = max(3, 7, 2, 5)
+print(largest)  # Output: 7
+    \end{lstlisting}
+\end{frame}
+
+\section{Parameter}
+
+\begin{frame}[fragile]{Parameter}
+    \begin{itemize}
+        \item A parameter is a variable in the function definition that refers to an argument during function calls.
+        \item Example:
+    \end{itemize}
+    \begin{lstlisting}
+def square(number):
+    return number * number
+    \end{lstlisting}
+\end{frame}
+
+\section{Return Values}
+
+\begin{frame}[fragile]{Return Values}
+    \begin{itemize}
+        \item \texttt{return} sends a value back to the caller.
+        \item Example:
+    \end{itemize}
+    \begin{lstlisting}
+def add(a, b):
+    return a + b
+    \end{lstlisting}
+\end{frame}
+
+\section{Multiple Parameters / Arguments}
+
+\begin{frame}[fragile]{Multiple Parameters / Arguments}
+    \begin{itemize}
+        \item Functions can take multiple parameters.
+        \item Example:
+    \end{itemize}
+    \begin{lstlisting}
+def multiply(x, y):
+    return x * y
+    \end{lstlisting}
+\end{frame}
+
+\section{Void (Non-Fruitful) Functions}
+
+\begin{frame}[fragile]{Void (Non-Fruitful) Functions}
+    \begin{itemize}
+        \item Void functions do not return a value.
+        \item Example:
+    \end{itemize}
+    \begin{lstlisting}
+def greet(name):
+    print("Hello, " + name + "!")
+    \end{lstlisting}
+\end{frame}
+
+\section{Advantages}
+\begin{frame}{Advantages}
+    \begin{itemize}
+        \item Organize code into logical chunks.
+        \item Avoid repetition by reusing code.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge End of Functions}
+    \end{center}
+\end{frame}
+
+\end{document}
