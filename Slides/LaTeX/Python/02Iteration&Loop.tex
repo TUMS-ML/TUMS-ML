@@ -1,0 +1,210 @@
+\documentclass[serif, aspectratio=169]{beamer}
+%\documentclass[serif]{beamer}  % for 4:3 ratio
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+
+\author{Dr.Hajialiasgari}
+\title{Introduction To Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Loops and Iteration}
+
+\begin{frame}{Repeated Steps}
+    Loops (repeated steps) have iteration variables that change each time through a loop. Often these iteration variables go through a sequence of numbers.
+\end{frame}
+
+\subsection{While Loops}
+
+\begin{frame}[fragile]{An Infinite Loop}
+    \begin{verbatim}
+n = 5
+while n > 0 :
+    print('Lather')
+    print('Rinse')
+print('Dry off!')
+    \end{verbatim}
+    \textcolor{red}{What is wrong with this loop?}
+\end{frame}
+
+\begin{frame}[fragile]{Breaking Out of the Loop (Code)}
+    The \texttt{break} statement ends the current loop and jumps to the statement immediately following the loop.
+
+    \begin{lstlisting}
+while True:
+    line = input('> ')
+    if line == 'done' :
+        break
+    print(line)
+print('Done!')
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Breaking Out of the Loop (Output)}
+    \textbf{Output:}
+    \begin{verbatim}
+> hello there
+hello there
+> finished
+finished
+> done
+Done!
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Finishing an Iteration with continue (Code)}
+    The \texttt{continue} statement ends the current iteration and jumps to the top of the loop to start the next iteration.
+
+    \begin{lstlisting}
+while True:
+    line = input('> ')
+    if line[0] == '#' :
+        continue
+    if line == 'done' :
+        break
+    print(line)
+print('Done!')
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Finishing an Iteration with continue (Output)}
+    \textbf{Output:}
+    \begin{verbatim}
+> hello there
+hello there
+> # don't print this
+> print this!
+print this!
+> done
+Done!
+    \end{verbatim}
+\end{frame}
+
+\subsection{For Loops}
+
+\begin{frame}[fragile]{Definite Loops}
+    \begin{center}
+        Iterating over a set of items…
+    \end{center}
+
+    \begin{itemize}
+        \item Loops that iterate over a finite set of things are called “definite loops.”
+        \item Example:
+    \end{itemize}
+
+    \begin{lstlisting}
+for i in range(1,10) :
+    print(i)
+print('Your first loop!')
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Finding the Average in a Loop (Code)}
+    \begin{lstlisting}
+count = 0
+sum = 0
+print('Before', count, sum)
+for value in [9, 41, 12, 3, 74, 15] :
+    count = count + 1
+    sum = sum + value
+    print(count, sum, value)
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Filtering in a Loop (Code)}
+    \begin{lstlisting}
+print('Before')
+for value in [9, 41, 12, 3, 74, 15] :
+    if value > 20:
+        print('Large number', value)
+print('After')
+    \end{lstlisting}
+
+    \textcolor{red}{We use an if statement in the loop to catch/filter the values we are looking for.}
+\end{frame}
+
+\begin{frame}[fragile]{Finding the Smallest Value (Code)}
+    \begin{lstlisting}
+smallest = None
+for value in [9, 41, 12, 3, 74, 15] :
+    if smallest is None : 
+        smallest = value
+    elif value < smallest : 
+        smallest = value
+    print(smallest, value)
+print(smallest)
+    \end{lstlisting}
+
+    We still have a variable that is the smallest so far. The first time through the loop, smallest is \texttt{None}, so we take the first value to be the smallest.
+\end{frame}
+
+\begin{frame}[fragile]{The is and is not Operators}
+   \begin{lstlisting}
+smallest = None
+for value in [3, 41, 12, 9, 74, 15] :
+    if smallest is None : 
+        smallest = value
+    elif value < smallest : 
+        smallest = value
+    print(smallest, value)
+   \end{lstlisting}
+   
+   Python has an \texttt{is} operator that can be used in logical expressions. \\
+   Implies “is the same as” \\
+   Similar to, but stronger than, \texttt{==}. \\
+   \texttt{is not} also is a logical operator.
+\end{frame}
+
+
+% End of Session Slide
+\begin{frame}
+    \begin{center}
+        {\Huge\ End of Loops and Iteration}
+    \end{center}
+\end{frame}
+
+\end{document}
