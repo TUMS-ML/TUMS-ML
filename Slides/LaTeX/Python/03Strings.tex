@@ -1,0 +1,321 @@
+\documentclass[serif, aspectratio=169]{beamer}
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+
+\author{Dr.Hajialiasgari}
+\title{Introduction To Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% Define custom colors and styles for listings
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Strings}
+
+\begin{frame}{String Data Type}
+    \begin{itemize}
+        \item A string is a sequence of characters.
+        \item A string literal uses quotes: \texttt{'Hello'} or \texttt{"Hello"}.
+        \item For strings, \texttt{+} means “concatenate.”
+        \item When a string contains numbers, it is still a string.
+        \item We can convert numbers in a string into a number using \texttt{int()}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{String Example Code}
+    \begin{lstlisting}
+str1 = "Hello"
+str2 = 'World!'
+str3 = str1 + str2
+print(str3)  # Output: HelloWorld!
+
+str4 = '123'
+str4 = str4 + 1  # TypeError: cannot concatenate 'str' and 'int' objects
+
+x = int(str4) + 1
+print(x)  # Output: 124
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Looking Inside Strings}
+    \begin{itemize}
+        \item Access any single character in a string using an index specified in square brackets.
+        \item Index value must be an integer and starts at zero.
+        \item Index value can be an expression that is computed.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Indexing Example}
+    \begin{lstlisting}
+fruit = 'banana'
+letter = fruit[1]
+print(letter)  # Output: a
+
+x = 3
+w = fruit[x - 1]
+print(w)  # Output: n
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{A Character Too Far}
+    \begin{itemize}
+        \item Accessing beyond the end of a string results in an error.
+        \item Be careful when constructing index values and slices.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{IndexError Example}
+    \begin{lstlisting}
+zot = 'abc'
+print(zot[5])  # IndexError: string index out of range
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Strings Have Length}
+    \begin{itemize}
+        \item The built-in function \texttt{len} gives the length of a string.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Indexing Example}
+    \begin{table}[]
+        \centering
+        \begin{tabular}{c|c|c|c|c|c|c}
+            \textbf{Index} & 0 & 1 & 2 & 3 & 4 & 5 \\
+            \hline
+            \textbf{Character} & b & a & n & a & n & a \\
+        \end{tabular}
+        \caption{Indexing of Each Character in "banana"}
+    \end{table}
+    \vspace{0.5cm}
+    \begin{itemize}
+        \item Each character in the word "banana" has a unique index starting from 0.
+        \item Accessing \texttt{fruit[1]} will return "a".
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Length Example}
+    \begin{lstlisting}
+fruit = 'banana'
+print(len(fruit))  # Output: 6
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Looping Through Strings}
+    \begin{itemize}
+        \item Using a \texttt{while} statement, iteration variable, and \texttt{len} function to construct a loop.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Looping Example}
+    \begin{lstlisting}
+fruit = 'banana'
+for letter in fruit: 
+    print(letter)
+    
+# Output
+# 0 b
+# 1 a
+# 2 n
+# 3 a
+# 4 n
+# 5 a
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Looping and Counting}
+    \begin{itemize}
+        \item Count the number of times a character appears in a string.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Counting Example}
+    \begin{lstlisting}
+word = 'banana'
+count = 0
+for letter in word:
+    if letter == 'a':
+        count += 1
+print(count)  # Output: 3
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Slicing Strings}
+    \begin{itemize}
+        \item Use a colon operator to access a continuous section of a string.
+        \item The second number is “up to but not including.”
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Slicing Example}
+    \begin{lstlisting}
+s = 'Monty Python'
+print(s[0:4])  # Output: Mont
+print(s[6:7])  # Output: P
+print(s[6:20]) # Output: Python
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{String Concatenation}
+    \begin{itemize}
+        \item The \texttt{+} operator is used for concatenation.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Concatenation Example}
+    \begin{lstlisting}
+a = 'Hello'
+b = a + 'There'
+print(b)  # Output: HelloThere
+
+c = a + ' ' + 'There'
+print(c)  # Output: Hello There
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Using \texttt{in} as a Logical Operator}
+    \begin{itemize}
+        \item The \texttt{\color{red}in} keyword checks if one string is in another.
+        \item Returns \texttt{True} or \texttt{False}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{in} Example}
+    \begin{lstlisting}
+fruit = 'banana'
+print('n' in fruit)  # Output: True
+print('m' in fruit)  # Output: False
+print('nan' in fruit) # Output: True
+
+if 'a' in fruit:
+    print('Found it!')
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{String Library}
+    \begin{itemize}
+        \item Python has many built-in string functions.
+        \item Functions are invoked by appending them to the string variable.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{String Functions Example}
+    \begin{lstlisting}
+greet = 'Hello Bob'
+zap = greet.lower()
+print(zap)        # Output: hello bob
+print(greet)      # Output: Hello Bob
+print('Hi There'.lower())  # Output: hi there
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Searching a String}
+    \begin{itemize}
+        \item Use \texttt{find()} to search for a substring.
+        \item Returns the index of the first occurrence, or -1 if not found.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Search Example}
+    \begin{lstlisting}
+fruit = 'banana'
+pos = fruit.find('na')
+print(pos)  # Output: 2
+
+aa = fruit.find('z')
+print(aa)  # Output: -1
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Search and Replace}
+    \begin{itemize}
+        \item The \texttt{replace()} function replaces occurrences of a substring.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Replace Example}
+    \begin{lstlisting}
+greet = 'Hello Bob'
+nstr = greet.replace('Bob', 'Jane')
+print(nstr)  # Output: Hello Jane
+
+nstr = greet.replace('o', 'X')
+print(nstr)  # Output: HellX BXb
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Stripping Whitespace}
+    \begin{itemize}
+        \item \texttt{lstrip()}, \texttt{rstrip()}, and \texttt{strip()} remove whitespace from strings.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Stripping Example}
+    \begin{lstlisting}
+greet = '   Hello Bob  '
+print(greet.lstrip())  # Output: 'Hello Bob  '
+print(greet.rstrip())  # Output: '   Hello Bob'
+print(greet.strip())   # Output: 'Hello Bob'
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Prefixes}
+    \begin{itemize}
+        \item Use \texttt{startswith()} to check if a string starts with a specific prefix.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Prefix Example}
+    \begin{lstlisting}
+line = 'Please have a nice day'
+print(line.startswith('Please'))  # Output: True
+print(line.startswith('p'))       # Output: False
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\ End of Strings}
+    \end{center}
+\end{frame}
+
+\end{document}
