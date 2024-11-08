@@ -1,0 +1,277 @@
+\documentclass[serif, aspectratio=169]{beamer}
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+
+\author{Dr.Hajialiasgari}
+\title{Introduction To Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% Define custom colors and styles for listings
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Python Dictionaries}
+
+\begin{frame}{A Story of Two Collections..}
+    \begin{itemize}
+        \item \texttt{\color{red}List:} A linear collection of values Lookup by position 0 .. length-1
+        \item \texttt{\color{red}Dictionary:} A linear collection of key-value pairs Lookup by "tag" or "key"
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dictionaries}
+    \begin{itemize}
+        \item Dictionaries are Python’s most powerful data collection
+        \item Dictionaries allow us to do fast database-like operations in Python
+        \item Similar concepts in different programming languages
+        \item We insert values into a  \texttt{\color{red}Dictionary} using a key and retrieve them using a key
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dictionary Example}
+    \begin{lstlisting}
+>>> Wizard = dict()
+>>> Wizard['Name'] = 'Harry'
+>>> Wizard['Last Name'] = 'Potter'
+>>> Wizard['Age'] = 12
+>>> print(Wizard)
+{'Name': 'Harry', 'Last Name': 'Potter', 'Age': 12}
+>>> print(Wizard['Name'])
+Harry
+>>> Wizard['Age'] = Wizard['Age'] + 2
+>>> print(Wizard)
+{'Name': 'Harry', 'Last Name': 'Potter', 'Age': 14}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Comparing Lists and Dictionaries}
+    \begin{itemize}
+        \item Dictionaries are like lists except that they use keys instead of positions to look up values
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> lst = list()
+>>> lst.append(21)                 
+>>> lst.append(183)
+>>> print(lst)
+[21, 183]
+>>> lst[0] = 23
+>>> print(lst)
+[23, 183]
+
+>>> ddd = dict()
+>>> ddd['age'] = 21
+>>> ddd['course'] = 182
+>>> print(ddd)
+{'age': 21, 'course': 182}
+>>> ddd['age'] = 23
+>>> print(ddd)
+{'age': 23, 'course': 182}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Dictionary Literals (Constants)}
+    \begin{itemize}
+        \item Dictionary literals use curly braces and have key : value pairs
+        \item You can make an empty dictionary using empty curly braces
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> jjj = { 'chuck' : 1 , 'fred' : 42, 'jan': 100}
+>>> print(jjj)
+{'chuck': 1, 'fred': 42, 'jan': 100}
+>>> ooo = { }
+>>> print(ooo)
+{}
+>>>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Many Counters with a Dictionary}
+\begin{itemize}
+        \item One common use of dictionaries is counting how often we “see” something 
+    \end{itemize}
+    \begin{lstlisting}
+>>> ccc = dict()
+>>> ccc['csev'] = 1
+>>> ccc['cwen'] = 1
+>>> print(ccc)
+{'csev': 1, 'cwen': 1}
+>>> ccc['cwen'] = ccc['cwen'] + 1
+>>> print(ccc)
+{'csev': 1, 'cwen': 2}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Dictionary Tracebacks}
+    \begin{itemize}
+        \item It is an error to reference a key which is not in the dictionary
+        \item We can use the \texttt{\color{red}in} operator to see if a key is in the dictionary
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> ccc = dict()
+>>> print(ccc['csev'])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'csev'
+>>> 'csev' in ccc
+False
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{When We See a New Name}
+    \begin{itemize}
+        \item When we encounter a new name, we need to add a new entry in the dictionary and if this the second or later time we have seen the name, we simply add one to the count in the dictionary under that name
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+counts = dict()
+names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+for name in names :
+    if name not in counts: 
+       counts[name] = 1
+    else :
+        counts[name] = counts[name] + 1
+print(counts)
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{The \textt{\color{red}get} Method for Dictionaries}
+    \begin{itemize}
+        \item The pattern of checking to see if a key is already in a dictionary and assuming a default value if the key is not there is so common that there is a method called \texttt{\color{red}get()} that does this for us
+        \item We can use \texttt{\color{red}get()} and provide a default value of zero when the key is not yet in the dictionary - and then just add one
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{\color{red}get()} Example}
+    \begin{lstlisting}
+counts = dict()
+names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+for name in names :
+    counts[name] = counts.get(name, 0) + 1
+print(counts)
+
+{'csev': 2, 'cwen': 2 , 'zqian': 1}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Definite Loops and Dictionaries}
+    \begin{itemize}
+        \item We can write a \texttt{\color{red}for}loop that goes through all the entries in a dictionary - actually it goes through all of the keys in the dictionary and looks up the values
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> counts = { 'chuck' : 1 , 'fred' : 42, 'jan': 100}
+>>> for key in counts:
+...     print(key, counts[key])
+... 
+chuck 1
+fred 42
+jan 100
+>>> 
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Retrieving Lists of Keys and Values}
+    \begin{itemize}
+        \item You can get a list of keys, values, or items (both) from a dictionary
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> jjj = { 'chuck' : 1 , 'fred' : 42, 'jan': 100}
+>>> print(list(jjj))
+['chuck', 'fred', 'jan']
+>>> print(list(jjj.keys()))
+['chuck', 'fred', 'jan']
+>>> print(list(jjj.values()))
+[1, 42, 100]
+>>> print(list(jjj.items()))
+[('chuck', 1), ('fred', 42), ('jan', 100)]
+>>> 
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Bonus: Two Iteration Variables!}
+    \begin{itemize}
+        \item We loop through the key-value pairs in a dictionary using *two* iteration variables
+        \item Each iteration, the first variable is the key and the second variable is the corresponding value for the key
+
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+jjj = { 'chuck' : 1 , 'fred' : 42, 'jan': 100}
+for aaa,bbb in jjj.items() :
+    print(aaa, bbb)
+    
+#output
+chuck 1
+fred 42
+jan 100
+
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+    \begin{center}
+        {\Huge\ End of Dictionaries}
+    \end{center}
+\end{frame}
+
+\end{document}
+
