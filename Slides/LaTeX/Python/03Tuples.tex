@@ -1,0 +1,280 @@
+\documentclass[serif, aspectratio=169]{beamer}
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+
+\author{Dr.Hajialiasgari}
+\title{Introduction To Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% Define custom colors and styles for listings
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Tuples}
+
+\begin{frame}{Tuples Are Like Lists}
+    \begin{itemize}
+        \item Tuples are another kind of sequence that functions much like a list  \item They have elements which are indexed starting at 0
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> x = ('Glenn', 'Sally', 'Joseph')
+>>> print(x[2])
+Joseph
+>>> y = ( 1, 9, 2 )
+>>> print(y)
+(1, 9, 2)
+>>> print(max(y))
+9
+>>> for iter in y:
+...     print(iter)
+... 
+1
+9
+2
+   \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Tuples are \texttt{\color{red}“immutable”}}
+    \begin{itemize}
+        \item Unlike a list, once you create a tuple, you cannot alter its contents - similar to a string   
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> y = 'ABC'
+>>> y[2] = 'D'
+Traceback:'str' object does 
+not support item 
+Assignment
+>>> z = (5, 4, 3)
+>>> z[2] = 0
+Traceback:'tuple' object does 
+not support item 
+Assignment
+>>> x = [9, 8, 7]
+>>> x[2] = 6
+>>> print(x)
+>>> [9, 8, 6]
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Things \texttt{\color{red}not} to do With Tuples}
+    \begin{lstlisting}
+>>> x = (3, 2, 1)
+>>> x.sort()
+Traceback:
+AttributeError: 'tuple' object has no attribute 'sort'
+>>> x.append(5)
+Traceback:
+AttributeError: 'tuple' object has no attribute 'append'
+>>> x.reverse()
+Traceback:
+AttributeError: 'tuple' object has no attribute 'reverse'
+>>> 
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{A Tale of Two Sequences}
+    \begin{lstlisting}
+>>> l = list()
+>>> dir(l)
+['append', 'count', 'extend', 'index', 'insert', 'pop', 'remove'
+, 'reverse', 'sort']
+
+>>> t = tuple()
+>>> dir(t)
+['count', 'index']	
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Tuples are More Efficient}
+	\begin{itemize}
+		\item Since Python does not have to build tuple structures to be modifiable, they are simpler and more efficient in terms of memory use and performance than lists
+		\item So in our program when we are making “temporary variables” we prefer tuples over lists
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Tuples and Assignment}
+	\begin{itemize}
+		\item We can also put a tuple on the left-hand side of an assignment statement
+		\item We can even omit the parentheses
+	\end{itemize}
+	\begin{lstlisting}
+>>> (x, y) = (4, 'fred')
+>>> print(y)
+fred
+>>> (a, b) = (99, 98)
+>>> print(a)
+99
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Tuples and Dictionaries}
+	\begin{itemize}
+		\item The \texttt{\color{red}items()} method in dictionaries returns a list of (key, value) tuples
+	\end{itemize}
+    \begin{lstlisting}
+>>> d = dict()
+>>> d['csev'] = 2
+>>> d['cwen'] = 4
+>>> for (k,v) in d.items(): 
+...     print(k, v)
+...
+csev 2
+cwen 4
+>>> tups = d.items()
+>>> print(tups)
+dict_items([('csev', 2), ('cwen', 4)])
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Tuples are Comparable}
+    \begin{itemize}
+        \item The comparison operators work with tuples and other sequences. If the first item is equal, Python goes on to the next element,  and so on, until it finds elements that differ.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> (0, 1, 2) < (5, 1, 2)
+True
+>>> (0, 1, 2000000) < (0, 3, 4)
+True
+>>> ( 'Jones', 'Sally' ) < ('Jones', 'Sam')
+True
+>>> ( 'Jones', 'Sally') > ('Adams', 'Sam')
+True
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Sorting Lists of Tuples}
+    \begin{itemize}
+        \item We can take advantage of the ability to sort a list of tuples to get a sorted version of a dictionary
+        \item First we sort the dictionary by the key using the \texttt{\color{red}items()} method and \texttt{\color{red}sorted()} function
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> d = {'a':10, 'c':22, 'b':1}
+>>> d.items()
+dict_items([('a', 10), ('c', 22), ('b', 1)])
+>>> sorted(d.items())
+[('a', 10), ('b', 1), ('c', 22)]
+
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Using \texttt{\color{red}sorted()}}
+    \begin{itemize}
+        \item We can do this even more directly using the built-in function sorted that takes a sequence as a parameter and returns a sorted sequence
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{\color{red}sorted()} Example}
+    \begin{lstlisting}
+>>> d = {'a':10 , 'b':1, 'c':22}
+>>> t = sorted(d.items())
+>>> t
+[('a', 10), ('b', 1), ('c', 22)]
+>>> for k, v in sorted(d.items()):
+...    print(k, v)
+...
+a 10
+b 1
+c 22
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Sort by Values Instead of Key}
+    \begin{itemize}
+        \item If we could construct a list of tuples of the form (value, key) we could sort by value
+        \item We do this with a for loop that creates a list of tuples  
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code Example}
+    \begin{lstlisting}
+>>> c = {'a':10, 'b':1, 'c':22}
+>>> tmp = list()
+>>> for k, v in c.items() :
+...     tmp.append( (v, k) )
+... 
+>>> print(tmp)
+[(10, 'a') , (1, 'b'), (22, 'c')]
+>>> tmp = sorted(tmp, reverse=True)
+>>> print(tmp)
+[(22, 'c'), (10, 'a'), (1, 'b')]
+
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Even Shorter Version}
+    \begin{lstlisting}   	
+>>> c = {'a':10, 'b':1, 'c':22}
+
+>>> print( sorted( [ (v,k) for k,v in c.items() ] ) )
+
+[(1, 'b'), (10, 'a'), (22, 'c')]
+ 
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\ End of Tuples}
+    \end{center}
+\end{frame}
+
+\end{document}
+
