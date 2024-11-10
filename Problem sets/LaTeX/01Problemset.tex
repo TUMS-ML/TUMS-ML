@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+\pagestyle{empty} % No page numbers or headers
+
+\begin{document}
+
+% Insert the logo at the top center
+\begin{center}
+    \includegraphics[width=4cm]{TUMS-logo.png} % Uploaded logo reference
+\end{center}
+
+% Add some vertical space after the logo
+\vspace{0.5cm}
+
+% Instructor, TA, and semester info with clearer spacing and hyphen fix
+\begin{center}
+    \textbf{Instructor: Dr. Hajialiasgari} \\
+    \textbf{Teaching Assistant: Benyamin Ghanbari} \\
+    \textbf{Semester: Fall -- 2024} \\ % Double hyphen for en-dash
+\end{center}
+
+% Add some vertical space
+\vspace{0.8cm}
+
+% Assignment number on the left, deadline on the right with better alignment
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+    \textbf{Assignment 1} % Adjust the assignment number
+\end{minipage}
+\begin{minipage}[t]{0.48\textwidth}
+    \raggedleft \textbf{Deadline: 2024-Nov-}
+\end{minipage}
+
+% Horizontal lines and assignment title between them
+\vspace{0.5cm}
+\hrule % Top horizontal line
+\vspace{0.5cm}
+\begin{center}
+    \textbf{\Large Python Course Chapter 1} % Adjust font size as necessary
+\end{center}
+\vspace{0.5cm}
+\hrule % Bottom horizontal line
+
+\vspace{0.5cm}
+
+% Question formatting with better line spacing and hyphen adjustment
+\section*{\small Question 1:}
+Design a program that accepts a user's weight (in kilograms) and height (in meters) as input and calculates their Body Mass Index (BMI). Based on the calculated BMI, the program should categorize the user's weight status according to the following criteria:
+
+\begin{itemize}
+    \item If \texttt{BMI < 18.5}, output "Underweight."
+    \item If \texttt{18.5 ≤ BMI < 24.9}, output "Normal weight."
+    \item If \texttt{25 ≤ BMI < 29.9}, output "Overweight."
+    \item If \texttt{BMI ≥ 30}, output "Obesity."
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{\small Question 2:}
+Write a program that reads a number from the input and prints the next multiple of 10 that is greater than this number. For example, if the input number is 11, it should print 20. If the input number is 40, it should print 50.
+
+\vspace{0.5cm}
+
+\section*{\small Question 3:}
+Tehran University wants to take students on a scientific visit to the hospital. Write a program for the university that receives the number of students and calculates and announces the visit cost per student based on the following details:
+
+\begin{itemize}
+    \item Food cost per person: 5000 Toman
+    \item Entry fee per person: 20000 Toman
+    \item Bus rental cost: 150000 Toman per bus
+    \item Bus capacity: 10 people
+\end{itemize}
+\textbf{Note:} Even if a bus is not full, the full rental cost must still be calculated.
+
+\vspace{0.5cm}
+
+\end{document}
