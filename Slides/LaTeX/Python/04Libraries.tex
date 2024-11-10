@@ -1,0 +1,143 @@
+\documentclass[serif, aspectratio=169]{beamer}
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+
+\author{Dr.Hajialiasgari}
+\title{Introduction to Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% Define custom colors and styles for listings
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Introduction to Python Libraries}
+
+\begin{frame}{What is a Python Library?}
+    \begin{itemize}
+        \item A Python library is a collection of reusable functions, classes, and modules that provide specific functionality.
+        \item Libraries simplify coding by offering pre-built solutions for common tasks.
+    \end{itemize}
+\end{frame}
+
+\section{Kinds of Python Libraries}
+
+\begin{frame}{1. Standard Libraries}
+    \begin{itemize}
+        \item Built-in libraries that come with Python and require no installation.
+        \item Examples:
+        \begin{itemize}
+            \item \texttt{math}: Mathematical functions, e.g., \texttt{sqrt}, \texttt{sin}.
+            \item \texttt{datetime}: Date and time manipulation.
+            \item \texttt{os}: Interacts with the operating system.
+            \item \texttt{sys}: System-specific functions and parameters.
+            \item \texttt{random}: Generates random numbers.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Standard Library Example: \texttt{math}}
+    \begin{lstlisting}
+import math
+print(math.sqrt(16))  # Outputs 4.0
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{2. Third-Party Libraries}
+    \begin{itemize}
+        \item Libraries developed by others that need to be installed separately.
+        \item Installed via package managers like \texttt{pip} or \texttt{conda}.
+        \item Examples by domain:
+        \begin{itemize}
+            \item \textbf{Data Analysis}: \texttt{pandas}, \texttt{numpy}
+            \item \textbf{Visualization}: \texttt{matplotlib}, \texttt{seaborn}
+            \item \textbf{Machine Learning}: \texttt{scikit-learn}, \texttt{tensorflow}
+            \item \textbf{Web Development}: \texttt{flask}, \texttt{django}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Installing Libraries}
+    \begin{itemize}
+        \item Install using \texttt{pip}:
+        \begin{lstlisting}
+pip install library_name
+        \end{lstlisting}
+        \item Install using \texttt{conda} (for Anaconda users):
+        \begin{lstlisting}
+conda install library_name
+        \end{lstlisting}
+        \item Example:
+        \begin{lstlisting}
+pip install pandas  # Installs pandas for data analysis
+        \end{lstlisting}
+    \end{itemize}
+\end{frame}
+
+\section{Popular Third-Party Libraries}
+
+\begin{frame}[fragile]{Example: Data Analysis with \texttt{pandas}}
+    \begin{lstlisting}
+import pandas as pd
+df = pd.read_csv('data.csv')
+print(df.head())  # Displays the first few rows of the dataset
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Example: Plotting with \texttt{matplotlib}}
+    \begin{lstlisting}
+import matplotlib.pyplot as plt
+plt.plot([1, 2, 3], [4, 5, 6])
+plt.show()  # Displays a simple line plot
+    \end{lstlisting}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Conclusion}
+    \begin{itemize}
+        \item Standard libraries come with Python, while third-party libraries expand functionality.
+        \item Python libraries make coding faster and more efficient.
+        \item Learning to use popular libraries enhances productivity in data science, machine learning, and web development.
+    \end{itemize}
+\end{frame}
+
+\end{document}
