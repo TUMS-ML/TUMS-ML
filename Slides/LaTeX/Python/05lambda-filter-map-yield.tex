@@ -1,0 +1,167 @@
+\documentclass[serif, aspectratio=169]{beamer}
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+
+\author{Dr.Hajialiasgari}
+\title{Introduction To Python}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% Define custom colors and styles for listings
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Filter ,Map ,Lambda ,Yield}
+
+\begin{frame}{Lambda Functions}
+    \begin{itemize}
+        \item A lambda function is a small, anonymous function that can have any number of arguments but only one expression. It's often used for short, simple operations where defining a full function might be unnecessary.
+        \item \texttt{\color{red}Characteristics:}
+        \item No def keyword or name.
+        \item Limited to one expression (e.g., no loops or multiple statements).
+        \item Typically used in combination with functions like filter, map, and sorted.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{lambda example}
+    \begin{lstlisting}
+# Regular function
+def multiply(x, y):
+    return x * y
+
+# Equivalent lambda function
+multiply = lambda x, y: x * y
+
+# Usage
+result = multiply(4, 5) 
+# Output: 20
+   \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Filter}
+    \begin{itemize}
+        \item The \texttt{\color{red}filter()} function applies a filtering condition to an iterable (e.g., list, tuple) and returns only the elements that satisfy the condition.
+        \item Returns: A filter object, which can be converted to a list or other iterable types.
+        \item Use Cases: Extracting specific elements based on a criterion (e.g., filtering even numbers, removing None values).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{filter Example}
+	\begin{lstlisting}
+# Remove strings with less than 5 characters
+words = ["apple", "kiwi", "banana", "pear"]
+filtered_words = filter(lambda word: len(word) >= 5, words)
+
+print(list(filtered_words))  
+# Output: ['apple', 'banana']
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Map}
+    \begin{itemize}
+        \item The \texttt{\color{red}map()} function applies a transformation function to all elements in an iterable. It’s often used when you need to perform the same operation on each element of a sequence.
+        \item Returns: A map object, which can be converted to a list or other iterable types.
+        \item Use Cases: Converting data types, performing mathematical operations, and applying transformations.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{map Example}
+    \begin{lstlisting}
+# Convert Celsius to Fahrenheit
+temps_celsius = [0, 20, 30, 40]
+temps_fahrenheit = map(lambda c: (c * 9/5) + 32, temps_celsius)
+
+print(list(temps_fahrenheit)) 
+# Output: [32.0, 68.0, 86.0, 104.0]
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Generator Functions (yield)}
+    \begin{itemize}
+        \item Generators are a type of iterable, like lists, but they produce items lazily (one at a time). This makes them memory-efficient, especially for large datasets.
+
+        \item \texttt{\color{red}Key Features:}
+        \item Use yield to produce a value and pause execution.
+        \item Can be resumed to continue producing more values.
+        \item Automatically implements the iterator protocol.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Advantages}
+    \begin{itemize}
+        \item Memory Efficient: Stores only the current state, not all values.
+        \item Lazy Evaluation: Generates values only when needed.
+        \item Infinite Sequences: Ideal for generating infinite sequences like Fibonacci numbers or prime numbers.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Comparison to Regular Functions:}
+    \begin{itemize}
+         \item A regular function returns all values at once and terminates.
+         \item A generator function yields values one at a time, preserving memory.
+    \end{itemize}
+
+\end{frame}
+\begin{frame}[fragile]{yield Example}
+    \begin{lstlisting}
+# Generate Fibonacci sequence up to a limit
+def fibonacci(limit):
+    a, b = 0, 1
+    while a < limit:
+        yield a
+        a, b = b, a + b
+
+# Using the generator
+for num in fibonacci(10):
+    print(num)
+# Output: 0, 1, 1, 2, 3, 5, 8
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\ End of Python Course !}
+    \end{center}
+\end{frame}
+
+\end{document}
+
