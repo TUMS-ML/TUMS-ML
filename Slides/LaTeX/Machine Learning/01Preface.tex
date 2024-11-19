@@ -3,8 +3,11 @@
 \usepackage{fourier}
 \usepackage{hyperref}
 \usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{booktabs} % For better table formatting
 \usepackage{graphicx,pstricks,listings,stackengine}
 \usepackage{listings}
+\usepackage{array} 
+\usepackage{colortbl}
 
 \author{Dr.Hajialiasgari}
 \title{Machine Learning}
@@ -66,7 +69,7 @@
     \end{itemize}
 \end{frame}
 
-\section{Different Types of Machine Learning}
+\section{Summary}
 \begin{frame}{Supervised Learning}
     \begin{itemize}
         \item In supervised learning, the model learns from labeled data, where each input (feature) is paired with a corresponding output (label or target). The goal is to learn a mapping from inputs to outputs.
@@ -137,6 +140,44 @@
     \centering
     \includegraphics[width=0.7\textwidth, height=0.7\textheight]{RL.png}
 \end{frame}
+
+\begin{frame}{Types of Machine Learning}
+    \scriptsize % Reduce text size to fit the table
+    \renewcommand{\arraystretch}{1.4} % Adjust row height
+    \setlength{\tabcolsep}{3pt} % Adjust column spacing
+    \begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|
+                    >{\raggedright\arraybackslash}p{3.0cm}|
+                    >{\raggedright\arraybackslash}p{3.5cm}|
+                    >{\raggedright\arraybackslash}p{4.0cm}|}
+        \hline
+        \rowcolor{blue} % Header background color
+        \textcolor{white}{\textbf{Type}} & 
+        \textcolor{white}{\textbf{Input}} & 
+        \textcolor{white}{\textbf{Output}} & 
+        \textcolor{white}{\textbf{Example Tasks}} \\ \hline
+        
+        \textbf{Supervised Learning} & 
+        Labeled data & 
+        Predict labels or continuous values & 
+        Spam detection, house price prediction \\ \hline
+        
+        \textbf{Unsupervised Learning} & 
+        Unlabeled data & 
+        Grouping or structure discovery & 
+        Customer segmentation, anomaly detection \\ \hline
+        
+        \textbf{Semi-Supervised Learning} & 
+        Few labeled + many unlabeled data & 
+        Improved predictions using both & 
+        Medical image classification \\ \hline
+        
+        \textbf{Reinforcement Learning} & 
+        Interactions + reward signal & 
+        Optimal policy for actions & 
+        Game playing, robotics \\ \hline
+    \end{tabular}
+\end{frame}
+
 
 \begin{frame}
     \begin{center}
