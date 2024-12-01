@@ -111,7 +111,7 @@
 
 \begin{frame}{Labeling Samples}
     \begin{itemize}
-        \item n supervised learning, labeled datasets are essential, but most available datasets are unlabeled. Consequently, a significant portion (around 80\%) of machine learning project time is spent collecting, organizing, and labeling data. Since manual labeling is resource-intensive, many teams rely on pre-labeled datasets.
+        \item In supervised learning, labeled datasets are essential, but most available datasets are unlabeled. Consequently, a significant portion (around 80\%) of machine learning project time is spent collecting, organizing, and labeling data. Since manual labeling is resource-intensive, many teams rely on pre-labeled datasets.
 
         \item  example, to map business types in a city, buying data from a government body might be impractical due to incomplete or outdated records. Alternatively, you could collect images using camera-equipped vehicles and manually label businesses (e.g., cafés, gyms, pharmacies), though this approach is costly.
 
@@ -136,7 +136,7 @@
         \item \texttt{\color{red}Bias}
         \item \texttt{\color{red}Low predictive power}
         \item \texttt{\color{red}Obsolescence}
-         \item \texttt{\color{red}Outliers}
+        \item \texttt{\color{red}Outliers}
         \item \texttt{\color{red}Data Leakage}
     \end{itemize}
 \end{frame}
@@ -150,16 +150,172 @@
 \begin{frame}{Bias}
     \begin{itemize}
         \item Some common issues in raw datasets include the following, with some explained in this lesson and the last two covered in detail in future lessons:
-        \item \texttt{\color{red}Noise}
-        \item \texttt{\color{red}Bias}
-        \item \texttt{\color{red}Low predictive power}
-        \item \texttt{\color{red}Obsolescence}
-         \item \texttt{\color{red}Outliers}
-        \item \texttt{\color{red}Data Leakage}
+        \item \texttt{\color{red}Selection Bias}
+        \item \texttt{\color{red}Self-Selection Bias}
+        \item \texttt{\color{red}Omitted Variable Bias}
+        \item \texttt{\color{red}Sponsorship or Funding Bias}
+        \item \texttt{\color{red}Sampling Bias}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Selection Bias}
+    \begin{itemize}
+        \item This occurs when a dataset is selected in a way that does not reflect the distribution of real-world data. This can happen due to ease of access to certain data sources or their cost-effectiveness. For example, imagine an author wants to know readers' opinions about their new book. The author sends the first few chapters to previous readers, who are likely to enjoy the new book because they already like the author's writing style. The key issue is that this information provides little insight into the opinion of a general reader about the new book.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Self-Selection Bias}
+    \begin{itemize}
+        \item In such cases, data is usually collected from sources that provide it voluntarily. Most survey datasets exhibit this kind of bias. For example, suppose you want to train a model to predict the behavior of successful entrepreneurs. You decide to first ask entrepreneurs whether they consider themselves successful and then keep only the data from those who claim to be successful. The issue is that genuinely successful entrepreneurs likely do not have time to answer your questions, while those who claim to be successful might be mistaken. Returning to the survey example, dissatisfied users are more inclined to give mid-range ratings instead of poor or very poor ones, causing the dataset to be biased toward mid-range ratings rather than the lower end.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Omitted Variable Bias}
+    \begin{itemize}
+        \item This occurs when the dataset lacks the necessary features for accurate predictions. For instance, imagine you are working on a predictive model to determine whether a customer will cancel their subscription within the next six months. You train a model that initially performs accurately. However, weeks after deployment, you observe unexpected results and a decline in model performance. Upon investigation, you discover that a new competitor is now offering very similar services at a much lower price. This feature was not available to your model initially, meaning it lacked critical information for accurate predictions.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Funding Bias}
+    \begin{itemize}
+        \item Imagine a company wants to use a model to predict successful AI companies in Iran over the next 10 years. Two AI companies volunteer to sponsor the project. They might expect their data in the model to be exaggerated to overstate their achievements. Such manipulation could compromise the model's performance and make it less effective than desired.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sampling Bias}
+    \begin{itemize}
+        \item It is the responsibility of data scientists to ensure that the samples used to build a model align with the environment where the model will be deployed. This type of bias occurs when the distribution of the dataset used for training does not reflect the distribution of the input data the model will encounter in practical use.
+    \end{itemize}
+\end{frame}
+
+\section{Data Splitting}
+\begin{frame}{A Short Story}
+    \begin{itemize}
+        \item Let’s go through a scenario. Imagine you are a professor at TUMS, aiming to teach students the course material. Throughout the semester, you convey knowledge through lectures and course materials like books and notes. You also assign exercises for students to solve, helping them reinforce their understanding. If they make mistakes, they refer back to the notes to review and correct their errors.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{A Short Story}
+    \begin{itemize}
+        \item At the semester's end, to determine which students have truly mastered the subject, you conduct a final exam with new questions. However, if you simply reuse questions from the notes or previous exercises, can you really identify who has genuinely learned the material? Definitely not!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item In machine learning, we follow a similar process. A portion of the dataset is provided to the model for learning (like books and notes). Another portion is used to verify the model's learning, and if needed, the training phase is repeated to ensure proper learning (like exercises and assignments). Finally, a completely unseen part of the dataset is used as the test data (exam questions). The error the model makes on the test data is considered its final error or final score.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item \texttt{\color{red}Training Set:} A portion of the dataset used for the model to learn.
+        \item \texttt{\color{red}Validation Set:} A separate portion of the dataset not used during training but utilized to improve the model's performance.
+        \item \texttt{\color{red}Test Set} A portion of the dataset used to evaluate the model's performance, serving as the final accuracy metric. This data should not be used during model development as it represents real-world examples.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Data-Spliting.png}
+\end{frame}
+
+\begin{frame}{Priority of Splitting:}
+    \begin{itemize}
+        \item The dataset should be split into training, validation, and test sets before applying any preprocessing. This prevents data leakage and ensures unbiased evaluation of the model.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementing Using Sklearn}
+	\begin{lstlisting}
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = 
+train_test_split(X, y, test_size=0.2, shuffle=True)
+
+X_train, X_test, y_train, y_test = 
+train_test_split(X, y, test_size=0.2, random_state=42)
+       \end{lstlisting}
+\end{frame}
+
+\section{Outliers}
+\begin{frame}
+    \begin{itemize}
+        \item An outlier is a data point that appears significantly different from most other samples in the dataset. Outliers can arise due to the following reasons:
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item \texttt{\color{red}Error in data collection and recording:}Mistakes may occur during data collection, such as typos by human operators or system errors. For instance, in a dataset of housing prices in Beijing, a user might accidentally add an extra zero when recording the "price per square meter" of a house.
+
+        \item \texttt{\color{red}Actual data distribution:}If outliers are not caused by errors, it indicates that the actual data distribution includes these deviations. For example, in the same housing dataset, luxurious and opulent homes in affluent areas of Beijing may naturally have prices significantly different from other properties.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Detecting Outliers}
+    \begin{itemize}
+        \item \texttt{\color{red}Statical Methods}
+        \item \texttt{\color{red} Distance-Based Methods}
+        \item \texttt{\color{red}Clustering-Based Methods}
     \end{itemize}
 \end{frame}
 
 
+\begin{frame}{Statical Methods}
+    \begin{itemize}
+        \item \texttt{\color{red}Z-Score:} This method calculates the standard deviation of the data points and identifies outliers as those with Z-scores exceeding a certain threshold (typically 3 or -3).
+        \item \texttt{\color{red}Interquartile Range (IQR):} IQR identifies outliers as data points falling outside the range defined by Q1-k*(Q3-Q1) and Q3+k*(Q3-Q1), where Q1 and Q3 are the first and third quartiles, and k is a factor (typically 1.5).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{IQR}
+    \centering
+    \includegraphics[width=0.8\textwidth]{iqr_quartiles.png}
+\end{frame}
+
+\begin{frame}{Box Plot}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Box-Plot.png}
+\end{frame}
+
+\begin{frame}{Techniques for Handling Outliers}
+    \begin{itemize}
+        \item \texttt{\color{red}1.Removal:} This involves identifying and removing outliers from the dataset before training the model. Common methods include:
+        \item \texttt{\color{red}Threshold:} Outliers are identified as data points exceeding a certain threshold (e.g., Z-score > 3).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Techniques for Handling Outliers}
+    \begin{itemize}
+        \item \texttt{\color{red}2.Transformation:}This involves transforming the data to reduce the influence of outliers. Common methods include:
+        \item \texttt{\color{red}Scaling:} Standardizing or normalizing the data to have a mean of zero and a standard deviation of one.
+        \item \texttt{\color{red}Winterization} 
+        \item \texttt{\color{red}Log transformation} 
+    \end{itemize}
+\end{frame}
+
+
+\section{Missing Value}
+
+\begin{frame}{What is a Missing Value ?}
+    \begin{itemize}
+        \item Missing values are data points that are absent for a specific variable in a dataset. They can be represented in various ways, such as blank cells, null values, or special symbols like “NA” or “unknown.” These missing data points pose a significant challenge in data analysis and can lead to inaccurate or biased results. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \includegraphics[width=0.8\textwidth]{m_v.png}
+\end{frame}
+
+\begin{frame}{Challenges}
+    \begin{itemize}
+        
+    \end{itemize}
+\end{frame}
+
+\section{Imbalanced Data}
 
 
 \begin{frame}
