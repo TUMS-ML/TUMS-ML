@@ -309,13 +309,53 @@ train_test_split(X, y, test_size=0.2, random_state=42)
     \includegraphics[width=0.8\textwidth]{m_v.png}
 \end{frame}
 
-\begin{frame}{Challenges}
+\begin{frame}{Methods for Identifying Missing Data}
     \begin{itemize}
-        
+        \item Locating and understanding patterns of missingness in the dataset is an important step in addressing its impact on analysis. Working with Missing Data in Pandas there are several useful functions for detecting, removing, and replacing null values in Pandas DataFrame. 
+        \item \texttt{\color{red}Notice: You can find the methods and codes in the related notebook of this chapter.}
     \end{itemize}
 \end{frame}
 
 \section{Imbalanced Data}
+\begin{frame}
+    \begin{itemize}
+        \item Imbalanced data refers to datasets where the distribution of target classes is uneven, meaning one class significantly outnumbers the others. This imbalance can lead to biased models that favor the majority class, reducing the model's ability to accurately predict the minority class.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Example in Medical Data}
+    \begin{itemize}
+        \item In medical datasets, imbalanced data often arises in disease detection. For instance, in cancer diagnosis, a dataset might contain 95\% of non-cancerous cases and only 5\% of cancerous cases. A model trained on such data may achieve high accuracy by predominantly predicting the majority class (non-cancer), but it would fail to effectively detect cancer cases, which are critical.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Managing Imbalanced Datasets}
+    \begin{itemize}
+        \item \texttt{\color{red}Data Approach:} This method involves manipulating the dataset samples to make it as balanced as possible.
+
+        \item \texttt{\color{red}Algorithmic Approach:} This method modifies machine learning algorithms to reduce their excessive focus on majority class samples.
+
+        \item \texttt{\color{red}Hybrid/Ensemble Approach:} A combination of the data and algorithmic approaches. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Data Approach}
+    \begin{itemize}
+        \item \texttt{\color{red}Oversampling:} Increases the minority class samples by duplicating or synthetically generating data (e.g., SMOTE). Improves minority class representation but risks overfitting.
+        \item \texttt{\color{red}Undersampling:} Reduces majority class samples by randomly removing data to balance the dataset. Saves computation but risks losing valuable information.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Oversampling-Undersampling}
+    \centering
+    \includegraphics[width=0.8\textwidth]{imbalanced.png}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\ \color{red}For more information and code check the related notebook}
+    \end{center}
+\end{frame}
 
 
 \begin{frame}
