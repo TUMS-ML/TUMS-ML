@@ -1,0 +1,179 @@
+\documentclass[serif, aspectratio=169]{beamer}
+\usepackage[T1]{fontenc} 
+\usepackage{fourier}
+\usepackage{hyperref}
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{booktabs} % For better table formatting
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{listings}
+\usepackage{array} 
+\usepackage{colortbl}
+
+\author{Dr.Hajialiasgari}
+\title{Machine Learning}
+\institute{
+    Tehran University \\
+    Of\\
+    Medical Science
+}
+\date{\small \today}
+\usepackage{UoWstyle}
+
+% Define custom colors and styles for listings
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{RGB}{153,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    \vspace*{-0.6cm}
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[keepaspectratio, scale=0.05]{Tumsl-logo.png}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\begin{frame}    
+\tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide, subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Feature Engineering}
+
+\section{Why Feature Engineering is Important?}
+\begin{frame}
+    \begin{itemize}
+        \item Feature engineering is crucial in machine learning as it transforms raw data into meaningful features, enhancing model performance and accuracy. By creating, selecting, and preprocessing features, it helps algorithms better understand patterns, leading to improved predictions and insights.
+    \end{itemize}
+\end{frame}
+
+
+\section{A Good Feature...}
+
+\begin{frame}
+    \begin{itemize}  
+        \item \texttt{\color{red}Relevant:}Directly related to the target variable and contributes to prediction accuracy.  
+        \item \texttt{\color{red}Independent:}Minimally correlated with other features to avoid redundancy.  
+        \item \texttt{\color{red}Discriminative:} Distinguishes between different classes or outcomes effectively.  
+        \item \texttt{\color{red}Robust:} Handles noise, missing values, and outliers without degrading model performance.  
+    \end{itemize}
+\end{frame}
+
+\section{Different Types of Features}
+
+\begin{frame}
+    \begin{itemize}
+        \item \texttt{\color{red}Numerical Features:} Quantitative data that represent measurable quantities (e.g., age, salary).
+        \item \texttt{\color{red}Categorical Features:} Qualitative data with discrete values representing categories (e.g., gender, city).
+        \item \texttt{\color{red}Ordinal Features:} Categorical data with a meaningful order or ranking (e.g., education level: high school, bachelor's, master's).
+        \item \texttt{\color{red}Binary Features:} Variables with only two possible values (e.g., 0/1, true/false).
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item \texttt{\color{red}Textual Features:} Data in text format requiring techniques like tokenization or embedding (e.g., customer reviews).
+        \item \texttt{\color{red}Temporal Features:} Data involving time, such as timestamps or durations (e.g., transaction date).
+        \item \texttt{\color{red}Spatial Features:} Data related to location or geography (e.g., latitude and longitude).
+        \item \texttt{\color{red}Derived Features:} Features created from raw data using transformations, combinations, or domain knowledge.
+    \end{itemize}
+\end{frame}
+
+\section{Managing Missing Values}
+
+\begin{frame}{Categorical Features}
+    \begin{itemize}
+        \item \texttt{\color{green}Imputation with a Constant:} Replace missing values with a placeholder such as \texttt{'Unknown'} or \texttt{'Missing'}. Useful when the absence of data has its own meaning.
+        \item \texttt{\color{green}Mode Imputation:} Replace missing values with the most frequent category. Suitable for features with a clear dominant class.
+        \item \texttt{\color{green}Imputation Based on Other Features:} Predict missing values using other related features. Requires advanced techniques like regression or classification models.
+        \item \texttt{\color{green}Frequency Encoding:} Replace missing values with the frequency or probability of each category.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Categorical Features}
+    \begin{itemize}
+         \item \texttt{\color{green}Custom Imputation:} Use domain knowledge to assign meaningful values. Effective when the missingness has a known context.
+         \item \texttt{\color{green}Separate Category:} Treat missing values as a separate category. Ideal for algorithms that can handle additional classes, such as decision trees.
+        \item \texttt{\color{green}Remove Rows/Columns:} Remove data points or features with too many missing values. Only appropriate when the missing data is non-critical or minimal.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Numerical Features}
+    \begin{itemize}
+         \item \texttt{\color{blue}Mean Imputation:} Replace missing values with the mean of the feature. Works well for data with a normal distribution.
+         \item \texttt{\color{blue}Median Imputation:} Replace missing values with the median of the feature. Suitable for skewed data or features with outliers.
+         \item \texttt{\color{blue}Mode Imputation:} Replace missing values with the mode (most frequent value). Useful when a single value dominates the feature.
+         \item \texttt{\color{blue}Imputation Using Other Features:} Predict missing values using related features through regression or machine learning models. Effective for datasets with strong feature relationships.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Numerical Features}
+    \begin{itemize}
+         \item \texttt{\color{blue}Interpolation:} Estimate missing values using trends in the data (e.g., linear or polynomial interpolation). Works well for time series or sequential data.
+        \item \texttt{\color{blue}Filling with a Constant:} Replace missing values with a specific constant, such as 0. Appropriate when the missing values represent an absence.
+        \item \texttt{\color{blue}Remove Rows/Columns:} Drop rows or features with too many missing values. Suitable when the proportion of missing values is high and the feature is non-critical.
+        \item \texttt{\color{blue}Use KNN Imputation:} Fill missing values by averaging the values of the \texttt{k}-nearest neighbors. Effective when similar data points are present.
+    \end{itemize}
+\end{frame}
+
+
+\section{Calendar Features}
+
+\begin{frame}
+    \begin{itemize}
+        \item These features are especially beneficial in time-series forecasting, sales analysis, and any context where time plays a significant role in influencing patterns or behaviors.
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item \texttt{\color{purple}Day of the Week:} Indicates the specific day (e.g., Monday, Tuesday) to capture weekday or weekend effects.
+        \item \texttt{\color{purple}Month:} Represents the month (e.g., January, February) to account for seasonal variations.
+        \item \texttt{\color{purple}Year:} Useful for capturing long-term trends or changes over years.
+        \item \texttt{\color{purple}Quarter:} Denotes the quarter of the year (e.g., Q1, Q2) to capture business cycles or seasonal trends.
+        \item \texttt{\color{purple}Day of the Month:} Specifies the day within a month (e.g., 1st, 15th).   
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item \texttt{\color{purple}Week of the Year:} Captures the week number in a year (e.g., Week 1, Week 52).
+        \item \texttt{\color{purple}Is Weekend/Weekday:} A binary feature indicating whether a date falls on a weekend or a weekday.
+        \item \texttt{\color{purple}Is Holiday:} Indicates whether the date is a public or special holiday, often determined based on local calendars.
+        \item \texttt{\color{purple}Season:} Classifies the date into a season (e.g., Spring, Summer) to capture climate or activity-based trends.
+        \item \texttt{\color{purple}Elapsed Time:} Measures the time difference between the given date and a reference date (e.g., days since a start date).
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \begin{center}
+        {\Huge\ \color{red}For more information and code check the related notebook}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \begin{center}
+        {\Huge\ End of Feature Engineering}
+    \end{center}
+\end{frame}
+
+\end{document}
+
