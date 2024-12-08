@@ -161,6 +161,212 @@
     \end{itemize}
 \end{frame}
 
+\section{Feature Synthesis}
+
+\begin{frame}
+    \begin{itemize}
+        \item Feature Synthesis in machine learning refers to the process of creating new features by combining or transforming existing ones. 
+        \item These synthesized features can capture complex relationships or patterns that may not be explicitly represented in the raw data, thereby improving model performance. It is a part of feature engineering and often requires domain knowledge or automated tools.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Key Techniques for Feature Synthesis}
+    \begin{itemize}
+        \item \texttt{\color{teal}Mathematical Transformations:}Apply arithmetic operations to existing features.\hfill \textit{Example:}Combine \texttt{length} and \texttt{width} to calculate \texttt{area}.
+    
+        \item \texttt{\color{teal}Polynomial Features:} Generate higher-order combinations of numerical features.\hfill \textit{Example:} Squaring or cubing features for non-linear modeling.
+    
+        \item \texttt{\color{teal}Aggregation:} Summarize data across groups using operations like mean, median, or sum.\hfill \textit{Example:} Average transaction value per customer.
+    
+        \item \texttt{\color{teal}Interaction Features:} Combine features to represent their interaction.\hfill \textit{Example:} Combine \texttt{age} and \texttt{income} to analyze purchasing behavior.
+    \end{itemize}  
+\end{frame}
+
+\begin{frame}{Key Techniques for Feature Synthesis}
+    \begin{itemize}
+        \item \texttt{\color{teal}Date/Time-Based Features:} Extract insights from timestamps.\hfill \textit{Example:} Day of the week, quarter, or duration of an event.
+    
+        \item \texttt{\color{teal}Encoding Categorical Features:} Convert categories into meaningful numerical representations.\hfill \textit{Example:} Frequency or target encoding.
+    
+        \item \texttt{\color{teal}Text Features:} Extract features from text data using NLP techniques.\hfill \textit{Example:} TF-IDF or sentiment analysis.
+    
+        \item \texttt{\color{teal}Domain-Specific Features:} Leverage domain knowledge to create relevant features.\hfill \textit{Example:} Calculate BMI in healthcare using weight and height.
+    \end{itemize}  
+\end{frame}
+
+\section{Feature Scaling}
+
+\begin{frame}{Definition}
+    \begin{itemize}
+        \item Feature scaling is a preprocessing technique used to normalize or standardize the range of independent features (input variables) in a dataset. It ensures that features contribute equally to the model's performance, avoiding bias toward features with larger scales.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Why is Feature Scaling Important?}
+    \begin{itemize}
+        \item \texttt{\color{teal}Improves Model Performance:} Many machine learning algorithms, such as gradient descent-based models, perform better when features are scaled consistently.
+
+        \item \texttt{\color{teal}Handles Different Ranges:} Features with vastly different ranges (e.g., income in dollars vs. age in years) can skew the results.
+
+        \item \texttt{\color{teal}Enhances Convergence:} Models like neural networks and SVMs converge faster with scaled features.
+
+        \item \texttt{\color{teal}Reduces Sensitivity to Scale:} Distance-based models (e.g., KNN, K-means) rely on scaled data to calculate accurate distances.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Common Techniques for Feature Scaling}
+    \begin{itemize}
+        \item \texttt{\color{teal}Min-Max Scaling (Normalization):} Transforms features to a fixed range, typically [0, 1].  
+        \begin{itemize}
+            \item \textbf{Formula:} 
+            \[
+            x' = \frac{x - x_{min}}{x_{max} - x_{min}}
+            \]
+            \item \textbf{Use Case:} Suitable when the data distribution is not Gaussian.
+        \end{itemize}
+
+        \item \texttt{\color{teal}Standardization (Z-Score Scaling):} Centers the data around 0 with a standard deviation of 1.  
+        \begin{itemize}
+            \item \textbf{Formula:} 
+            \[
+            x' = \frac{x - \mu}{\sigma}
+            \]
+            \item \textbf{Use Case:} Effective for models requiring Gaussian-like data.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Data Leakage}
+
+\begin{frame}{Definition}
+    \begin{itemize}
+        \item Data leakage occurs when information from outside the training dataset is inappropriately used to create a machine learning model, leading to overly optimistic performance metrics during training and poor performance on unseen data.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Why is Data Leakage a Problem?}
+    \begin{itemize}
+        \item \texttt{\color{teal}Unrealistic Performance Metrics:} The model appears to perform well during training or validation but fails in real-world scenarios.
+    
+        \item \texttt{\color{teal}Overfitting:} The model relies on leaked information rather than learning true patterns from the data.
+    
+        \item \texttt{\color{teal}Loss of Generalization:} The model cannot generalize to new, unseen data, rendering it ineffective in production.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Common Causes of Data Leakage}
+    \begin{itemize}
+        \item \texttt{\color{teal}Target Leakage:} When features contain information about the target that wouldn’t be available during prediction.  
+        \textbf{Example:} Using future sales data to predict current sales.
+
+        \item \texttt{\color{teal}Train-Test Contamination:} Test data is used during training, compromising evaluation.  
+        \textbf{Example:} Normalizing the entire dataset before splitting.
+
+        \item \texttt{\color{teal}Temporal Leakage:} Using future data to predict past or present outcomes.  
+        \textbf{Example:} Including post-event data for event prediction.
+
+        \item \texttt{\color{teal}Improper Cross-Validation:} Data from test folds leaks into training folds during validation.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Cross-Validation}
+   \centering
+   \includegraphics[width=0.8\textwidth]{cross-validation.png}
+\end{frame}
+
+\begin{frame}{How to Prevent Data Leakage?}
+    \begin{itemize}
+        \item \texttt{\color{teal}Careful Feature Selection:} 
+        Ensure features do not contain information about the target variable.
+
+        \item \texttt{\color{teal}Correct Data Splitting:} 
+        Split the dataset into train, validation, and test sets before any preprocessing.
+
+        \item \texttt{\color{teal}Time-Aware Splitting:} 
+        For time-series data, split based on time to avoid future data influencing predictions.
+
+        \item \texttt{\color{teal}Isolation of Test Data:} 
+        Keep the test set separate and untouched until the final evaluation.
+
+        \item \texttt{\color{teal}Use of Pipelines:} 
+        Automate preprocessing and training to ensure consistent operations across splits.
+    \end{itemize}
+\end{frame}
+
+\section{Curse of Dimensionality}
+
+\begin{frame}{Definition}
+    \begin{itemize}
+        \item The curse of dimensionality refers to the challenges and inefficiencies that arise when analyzing and organizing data in high-dimensional spaces. As the number of features (dimensions) increases, the amount of data needed to maintain the same level of performance grows exponentially.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Why is it a Problem?}
+     \begin{itemize}
+        \item \texttt{\color{teal}Sparse Data in High Dimensions:} As dimensions increase, data points become more spread out, making it difficult for models to find meaningful patterns.
+
+        \item \texttt{\color{teal}Increased Computational Cost:} High-dimensional data requires more memory and computation, slowing down training and prediction.
+
+        \item \texttt{\color{teal}Overfitting Risk:} Models may capture noise instead of meaningful patterns due to the vast feature space.
+
+        \item \texttt{\color{teal}Reduced Model Interpretability:} High-dimensional data makes it harder to understand relationships between features and the target variable.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{How to Mitigate the Curse of Dimensionality ?}
+     \begin{itemize}
+         \item \texttt{\color{teal}Feature Selection:} 
+         Select only the most relevant features for your model.
+
+         \item \texttt{\color{teal}Dimensionality Reduction:} 
+         Use techniques like PCA or t-SNE to reduce the number of dimensions.
+
+        \item \texttt{\color{teal}Regularization Techniques:} 
+        Prevent overfitting by adding penalties to complex models.
+
+        \item \texttt{\color{teal}Increase Data Volume:} 
+        Gather more data to compensate for the increased feature space.
+    \end{itemize}
+\end{frame}
+
+\section{Feature Selection}
+
+\begin{frame}{Why is Feature Selection Important?}
+    \begin{itemize}
+        \item \texttt{\color{teal}Improves Model Performance:} 
+        Removes irrelevant features, allowing the model to focus on the most important information, leading to better accuracy.
+
+        \item \texttt{\color{teal}Reduces Overfitting:} 
+        Fewer features reduce the risk of the model capturing noise, preventing overfitting.
+
+        \item \texttt{\color{teal}Enhances Generalization:} 
+        A simpler model generalizes better to new, unseen data.
+
+        \item \texttt{\color{teal}Reduces Computational Cost:} 
+        With fewer features, the model requires less memory and computation, speeding up training.
+
+        \item \texttt{\color{teal}Improves Interpretability:} 
+        A model with fewer features is easier to understand and interpret, which aids in decision-making.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Common Techniques for Feature Selection}
+    \begin{itemize}
+        \item \texttt{\color{teal}Correlation Matrix:} 
+        Identify highly correlated features and remove the redundant ones.
+
+        \item \texttt{\color{teal}Principal Component Analysis (PCA):} 
+        Reduce the dimensionality of the dataset while retaining as much variance as possible by transforming features into principal components.
+
+        \item \texttt{\color{teal}Mutual Information:} 
+        Measures the dependency between features and the target variable.
+
+        \item \texttt{\color{teal}Recursive Feature Elimination (RFE):} 
+        Iteratively removes features and builds models to identify the most important ones.
+    \end{itemize}
+
+\end{frame}
+
 
 \begin{frame}
     \begin{center}
