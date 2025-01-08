@@ -199,6 +199,245 @@
 \end{frame}
 
 \section{Linear Regression}
+\begin{frame}{What is Regression?}
+\textbf{Regression} is a statistical method used to model the relationship between a dependent variable (output) and one or more independent variables (inputs). The goal is to predict the output based on input features.
+
+\vspace{0.5cm}
+\textbf{Linear Regression} is a type of regression where the relationship between variables is modeled as a straight line. The formula is:
+\begin{equation}
+Y = w_0 + w_1 X
+\end{equation}
+Where:
+\begin{itemize}
+    \item $Y$: Predicted value (dependent variable)
+    \item $X$: Input feature (independent variable)
+    \item $w_0$: Intercept (bias term)
+    \item $w_1$: Slope (weight)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Common Example: Predicting House Prices}
+\textbf{Problem:} A real estate agent wants to predict the price of a house based on its size.
+
+\textbf{Given Data:}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Size (sq ft) & Price (USD) \\
+\hline
+1000 & 200,000 \\
+1500 & 300,000 \\
+2000 & 400,000 \\
+2500 & 500,000 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Solution:} Using linear regression, we fit the line:
+\begin{equation}
+Y = w_0 + w_1 X
+\end{equation}
+\textbf{Steps:}
+\begin{itemize}
+    \item Calculate $w_1$ (slope): $w_1 = \frac{\sum (X - \bar{X})(Y - \bar{Y})}{\sum (X - \bar{X})^2}$
+    \item Calculate $w_0$ (intercept): $w_0 = \bar{Y} - w_1 \bar{X}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Medical Example: Predicting Blood Pressure}
+\textbf{Problem:} A doctor wants to predict a patient's systolic blood pressure based on their age.
+
+\textbf{Given Data:}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Age (years) & Blood Pressure (mmHg) \\
+\hline
+30 & 120 \\
+40 & 130 \\
+50 & 140 \\
+60 & 150 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Solution:} Using linear regression, we fit the line:
+\begin{equation}
+Y = w_0 + w_1 X
+\end{equation}
+\textbf{Steps:}
+\begin{itemize}
+    \item Calculate $w_1$ (slope): $w_1 = \frac{\sum (X - \bar{X})(Y - \bar{Y})}{\sum (X - \bar{X})^2}$
+    \item Calculate $w_0$ (intercept): $w_0 = \bar{Y} - w_1 \bar{X}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{House Price Prediction Plot}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{house_price_non_perfect_plot.png} 
+    \end{figure}
+\end{frame}
+
+\section{Polynomial Regression}
+
+\begin{frame}{What is Polynomial Regression?}
+\textbf{Polynomial Regression} is an extension of linear regression where the relationship between the independent variable $X$ and the dependent variable $Y$ is modeled as an $n^{th}$ degree polynomial.
+
+\vspace{0.5cm}
+The formula for polynomial regression is:
+\begin{equation}
+Y = w_0 + w_1 X + w_2 X^2 + \cdots + w_n X^n
+\end{equation}
+Where:
+\begin{itemize}
+    \item $Y$: Predicted value (dependent variable)
+    \item $X$: Input feature (independent variable)
+    \item $w_0, w_1, \dots, w_n$: Coefficients to be learned
+\end{itemize}
+\textbf{Why use Polynomial Regression?}
+\begin{itemize}
+    \item To capture non-linear relationships in the data.
+    \item Linear regression fails to fit curves, while polynomial regression can.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Predicting Tumor Growth}
+\textbf{Problem:} A researcher wants to model the relationship between time (days) and the size of a tumor (in cm).
+
+\textbf{Given Data:}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Time (days) & Tumor Size (cm) \\
+\hline
+1 & 2.1 \\
+2 & 4.5 \\
+3 & 8.0 \\
+4 & 14.2 \\
+5 & 23.5 \\
+6 & 35.8 \\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Solution Steps}
+\item Using polynomial regression, we fit a curve:
+\begin{equation}
+Y = w_0 + w_1 X + w_2 X^2
+\end{equation}
+\textbf{Steps:}
+\begin{itemize}
+    \item Calculate coefficients $w_0$, $w_1$, $w_2$ using least squares method.
+    \item Plot the curve and observe the fit.
+\end{itemize}
+\textbf{Result:} The model captures the non-linear growth pattern of the tumor.
+\end{frame}
+
+\begin{frame}{Polynomial Regression Plot}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{polynomialregression.png} 
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Why Polynomial?}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{PolynomialVsLinear.png} 
+    \end{figure}
+\end{frame}
+
+\section{Evaluation}
+\begin{frame}{What is Evaluation?}
+    \item Evaluation in machine learning is the process of measuring how well a model performs on a given task. It helps to:
+\begin{itemize}
+    \item Assess model accuracy.
+    \item Identify overfitting or underfitting.
+    \item Compare different models.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why Choose the Right Metric?}
+    \begin{itemize}
+        \item Different tasks (regression, classification) require different evaluation methods.
+        \item Incorrect metrics can lead to wrong conclusions.
+        \item Metrics must align with business goals and data characteristics.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mean Absolute Error (MAE)}
+\textbf{Formula:}
+\begin{equation}
+MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+\end{equation}
+\textbf{When to Use:}
+\begin{itemize}
+    \item When you want to measure the average magnitude of errors.
+    \item Suitable when all errors have the same importance.
+\end{itemize}
+\textbf{Pros:} Easy to interpret.
+\textbf{Cons:} Less sensitive to large errors.
+\end{frame}
+
+\begin{frame}{Mean Squared Error (MSE)}
+\textbf{Formula:}
+\begin{equation}
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\end{equation}
+\textbf{When to Use:}
+\begin{itemize}
+    \item When you want to penalize larger errors more.
+    \item Common in regression problems.
+\end{itemize}
+\textbf{Pros:} Penalizes large errors more than MAE.
+\textbf{Cons:} Sensitive to outliers.
+\end{frame}
+
+\begin{frame}{Root Mean Squared Error (RMSE)}
+\textbf{Formula:}
+\begin{equation}
+RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+\end{equation}
+\textbf{When to Use:}
+\begin{itemize}
+    \item When you want to interpret the error in the same unit as the target variable.
+    \item Useful for comparing models.
+\end{itemize}
+\textbf{Pros:} Easy to interpret.
+\textbf{Cons:} Sensitive to outliers.
+\end{frame}
+
+\begin{frame}{R-Squared ($R^2$)}
+\textbf{Formula:}
+\begin{equation}
+R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}
+\end{equation}
+\textbf{When to Use:}
+\begin{itemize}
+    \item To measure how well the model explains the variance in the data.
+    \item Useful for determining model fit.
+\end{itemize}
+\textbf{Pros:} Provides a normalized score.
+\textbf{Cons:} Can be misleading for non-linear models.
+\end{frame}
+
+\begin{frame}{Summary of Evaluation Metrics}
+\begin{table}[]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Metric} & \textbf{Formula} & \textbf{When to Use} \\
+\hline
+MAE & $\frac{1}{n} \sum |y_i - \hat{y}_i|$ & Average magnitude of errors \\
+MSE & $\frac{1}{n} \sum (y_i - \hat{y}_i)^2$ & Penalizes larger errors more \\
+RMSE & $\sqrt{\frac{1}{n} \sum (y_i - \hat{y}_i)^2}$ & Same unit as target variable \\
+$R^2$ & $1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$ & Explains variance in the data \\
+\hline
+\end{tabular}
+\end{table}
+\end{frame}
 
 
 \begin{frame}
