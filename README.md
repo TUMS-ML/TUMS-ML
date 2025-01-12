@@ -11,8 +11,8 @@ The course is divided into two main sections:
 
 
 ## Instructor
-**Dr.Dr. Hajialiasgari**  
-Tehran University of Medical Sciences
+**Dr.Hajialiasgari**  
+ Assitant Professor at Tehran University of Medical Sciences
 
 ## Head Teaching Assistant
 **[Benyamin Ghanbari](https://benyamin-ghanbari.github.io/)**
