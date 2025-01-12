@@ -19,7 +19,7 @@ The course is divided into two main sections:
 
 Feel free to reach out with any questions or suggestions regarding the course material. We aim to create an engaging and informative learning experience for all participants!
 
-```
+
 
 ### Getting Started
 To get started with the course, clone this repository:
