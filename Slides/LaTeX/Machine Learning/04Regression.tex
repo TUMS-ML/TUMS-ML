@@ -439,6 +439,121 @@ $R^2$ & $1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}$ & Explains
 \end{table}
 \end{frame}
 
+\section{Generalization & Regularization}
+\begin{frame}{What is Generalization?}
+\textbf{Generalization} in machine learning refers to a model's ability to perform well on unseen data that it has not encountered during training. It is a measure of how well the model can apply the knowledge learned from the training data to new, real-world scenarios.
+
+\vspace{0.5cm}
+\textbf{Key Concepts:}
+\begin{itemize}
+    \item \textbf{Training Error:} The error a model makes on the training data.
+    \item \textbf{Test Error:} The error a model makes on unseen data.
+    \item \textbf{Overfitting:} When a model performs well on training data but poorly on test data.
+    \item \textbf{Underfitting:} When a model performs poorly on both training and test data.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why is Generalization Important?}
+\begin{itemize}
+    \item A well-generalized model can make accurate predictions on new, unseen data.
+    \item It ensures that the model is not just memorizing the training data but learning patterns that apply broadly.
+    \item Poor generalization leads to models that either overfit or underfit the data, resulting in poor performance in real-world applications.
+\end{itemize}
+
+\textbf{Example:} A model trained to predict house prices should perform well not only on the training dataset but also on new properties it hasn't seen before.
+\end{frame}
+
+\begin{frame}{Overfitting vs. Underfitting}
+\textbf{Overfitting:}
+\begin{itemize}
+    \item Model captures noise and irrelevant details in the training data.
+    \item High training accuracy but poor test accuracy.
+    \item Solution: Regularization, pruning, cross-validation.
+\end{itemize}
+
+
+\textbf{Underfitting:}
+\begin{itemize}
+    \item Model fails to capture the underlying pattern in the data.
+    \item Both training and test accuracy are low.
+    \item Solution: Use a more complex model, feature engineering.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{How to Improve Generalization?}
+\begin{itemize}
+    \item \textbf{Cross-Validation:} Split the dataset into multiple folds and validate the model on different subsets.
+    \item \textbf{Regularization:} Add a penalty term to the loss function to prevent the model from becoming too complex.
+    \item \textbf{Early Stopping:} Stop training when the performance on a validation set stops improving.
+    \item \textbf{Data Augmentation:} Increase the diversity of the training data by creating variations of the existing data.
+    \item \textbf{Dropout:} Randomly drop units in a neural network during training to prevent overfitting.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Variance & Bias}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{BiasVariance.png} 
+    \end{figure}
+\end{frame}
+
+\begin{frame}{What is Regularization?}
+\textbf{Regularization} is a technique used in regression models to reduce overfitting by adding a penalty term to the model's loss function. It prevents the model from becoming too complex and helps improve generalization to unseen data.
+
+\vspace{0.5cm}
+\textbf{Why Use Regularization?}
+\begin{itemize}
+    \item To prevent overfitting.
+    \item To ensure the model performs well on both training and test data.
+    \item To improve model interpretability by reducing overly complex solutions.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Regularized Linear Regression Formula}
+The objective in linear regression is to minimize the cost function:
+\begin{equation}
+J(w) = \sum_{i=1}^{n} \left( y^{(i)} - \left( w_0 + w_1 x^{(i)} \right) \right)^2
+\end{equation}
+
+In regularized regression, a penalty term is added to the cost function to prevent large coefficient values:
+\begin{equation}
+J(w) = \sum_{i=1}^{n} \left( y^{(i)} - \left( w_0 + w_1 x^{(i)} \right) \right)^2 + \lambda R(w)
+\end{equation}
+where:
+\begin{itemize}
+    \item $\lambda$ is the regularization parameter.
+    \item $R(w)$ is the regularization term.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Types of Regularization}
+There are two main types of regularization used in regression:
+\begin{itemize}
+    \item \textbf{L1 Regularization (Lasso)}
+    \item \textbf{L2 Regularization (Ridge)}
+\end{itemize}
+Both add a penalty term to the cost function, but they do so in different ways.
+\end{frame}
+
+\begin{frame}{L1 Regularization (Lasso)}
+L1 regularization adds the sum of the absolute values of the coefficients to the cost function:
+\begin{equation}
+J(w) = \sum_{i=1}^{n} \left( y^{(i)} - \hat{y}^{(i)} \right)^2 + \lambda \sum_{j=1}^{p} |w_j|
+\end{equation}
+
+\textbf{Effect:} Encourages sparsity by shrinking some coefficients to exactly zero, effectively performing feature selection.
+\end{frame}
+
+\begin{frame}{L2 Regularization (Ridge)}
+L2 regularization adds the sum of the squared values of the coefficients to the cost function:
+\begin{equation}
+J(w) = \sum_{i=1}^{n} \left( y^{(i)} - \hat{y}^{(i)} \right)^2 + \lambda \sum_{j=1}^{p} w_j^2
+\end{equation}
+
+\textbf{Effect:} Prevents large coefficients by penalizing their magnitude, but does not reduce them to zero.
+\end{frame}
+
+
 
 \begin{frame}
     \begin{center}
